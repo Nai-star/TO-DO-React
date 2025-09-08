@@ -1,4 +1,4 @@
-import ListaTareas from '../components/ListaTareas'
+import ListaTareas from '../components/listaGetyPost/ListaTareas'
 
 function Lista() {
   return (
