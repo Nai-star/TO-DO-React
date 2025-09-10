@@ -1,0 +1,35 @@
+.custom-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #7d4eff;
+  border-radius: 1px;
+  margin-right: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.custom-checkbox.checked {
+  background: #7d4eff;
+  color: white;
+}
+
+.checkmark {
+  font-size: 20px;
+  font-weight: bold;
+}
+.tarea-input input {
+  width: 220px;       /* ancho del input */
+  padding: 8px 10px;   /* reduce espacio interno */
+  font-size: 20px;    /* tamaño de texto más pequeño */
+  border-radius: 4px; /* opcional, esquinas redondeadas */
+  border: 1px solid #ccc;
+}
+
+.tarea-input button {
+  padding: 4px 8px;   /* botón pequeño acorde al input */
+width: 120px;
+height: 45px;
+}

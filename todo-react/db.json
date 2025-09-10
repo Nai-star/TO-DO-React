@@ -1,24 +1,19 @@
 {
   "tareas": [
     {
-      "id": "21cd",
-      "texto": "barrer"
+      "id": "4adf",
+      "texto": "Comer",
+      "completada": false
     },
     {
-      "id": 1757359974890,
-      "texto": "comer"
+      "id": "baff",
+      "texto": "lavar",
+      "completada": true
     },
     {
-      "id": 1757362634659,
-      "texto": "lavra"
-    },
-    {
-      "id": 1757362645597,
-      "texto": "lavar"
-    },
-    {
-      "id": 1757368029782,
-      "texto": "comer"
+      "id": "4595",
+      "texto": "Barrer",
+      "completada": false
     }
   ]
 }

@@ -35,23 +35,25 @@ async function getTareas() {
       throw error;
    }
 }
-async function deleteTareas(id) {
-    try {
-        const response = await fetch("http://localhost:3001/tarea/" + id,{
 
-       method:"DELETE",
-       headers:{
-        "Content-Type": "application/json"
-        }
-     })
-     const tareaElimanada = await response.json() 
-     return tareaElimanada
-        
-    } catch (error) {
-     console.error("hay un error al eliminar las tareas", error)
-     throw error
-     
+async function deleteTareas(id) {
+  try {
+    const response = await fetch(`http://localhost:3001/tareas/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al eliminar la tarea");
     }
+
+    return true; // o retorna el id si quieres
+  } catch (error) {
+    console.error("hay un error al eliminar las tareas", error);
+    throw error;
+  }
 }
 
 
@@ -59,16 +61,16 @@ async function deleteTareas(id) {
 
 async function patchTareas(id, tareaEditada) {
     try {
-        const response = await fetch("http://localhost:3001/tarea/" + id,{
+        const response = await fetch("http://localhost:3001/tareas/" + id,{
 
        method:"PATCH",
        headers:{
         "Content-Type": "application/json",
         },
-        body:JSON.stringify(productoEditado)
+        body:JSON.stringify(tareaEditada)
      })
-     const tareaEditada= await response.json() 
-     return tareaEditada
+     const tareaEditada2= await response.json() 
+     return tareaEditada2
         
     } catch (error) {
      console.error("hay un error al editar las tareas", error)
