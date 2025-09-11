@@ -1,10 +1,13 @@
-import ListaTareas from '../components/listaGetyPost/ListaTareas'
+  
+
+ import ListaTareas from '../components/listaGetyPost/ListaTareas'
 
 
 
 function Lista() {
   return (
     <div>
+      
      <ListaTareas/>
      
     
