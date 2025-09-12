@@ -1,117 +1,234 @@
+/* ==================== ESTILO GENERAL ==================== */
 body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #f8f5fc, #f3e8ff);
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  color: #4b0082;
 }
 
+/* Contenedor principal */
 .contenedor-principal {
-  width: 400px;
-  margin-top: 50px;
-  padding: 20px 15px;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.6s ease;
 }
 
+/* Animación entrada */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== TITULOS ==================== */
 h1 {
+  color: #6d28d9;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 6px rgba(109, 40, 217, 0.15);
+}
+
+h2 {
   color: #7c3aed;
   text-align: center;
-  font-size: 60px;
-  font-weight: 700;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
+/* ==================== CONTADOR ESTRELLA ==================== */
 #contador {
-  display: flex;
-  margin: 0 auto 20px;
+  margin: 0 auto 30px;
   color: #ffffff;
   font-weight: 700;
-  font-size: 10px;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   text-align: center;
-  padding: 12px;
-  background-color: #7c3aed;
+  padding: 16px;
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
   clip-path: polygon(
     50% 0%, 61% 35%, 98% 35%, 68% 57%,
     79% 91%, 50% 70%, 21% 91%, 32% 57%,
     2% 35%, 39% 35%
   );
-  width: 300px;
-  height: 200px;
+  width: clamp(220px, 60%, 320px);
+  height: clamp(140px, 30vw, 220px);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 8px 20px rgba(124, 58, 237, 0.25);
+  border: 2px solid #c4b5fd;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
 }
 
-/* Tareas */
+#contador:hover {
+  transform: scale(1.05);
+}
+
+/* ==================== LISTA DE TAREAS ==================== */
 .tarea-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: #5b21b6;
   font-weight: 500;
   border-bottom: 1px solid #e0d7f8;
-  font-size: 40px;
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  padding: 10px 5px;
+  transition: background 0.3s ease;
+  border-radius: 8px;
 }
 
-
+.tarea-item:hover {
+  background: rgba(167, 139, 250, 0.1);
+}
 
 .tarea-texto.completada {
   text-decoration: line-through;
-  color: gray;
+  color: #a1a1aa;
   flex: 1;
+  font-style: italic;
 }
 
+/* ==================== BOTONES DE ACCION ==================== */
 .acciones {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 
-/* Botones de tarea */
 .acciones button {
-  background: none;
+  background: #ede9fe;
   border: none;
-  padding: 0.5;
   cursor: pointer;
   font-size: 18px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .acciones button:hover {
-  color: #a78bfa;
+  background: #c4b5fd;
+  color: white;
 }
 
 .acciones button.btn-eliminar {
-  color: red;
-  height: 20px;
-  width: 20px;
+  background: #fee2e2;
+  color: #dc2626;
 }
 
 .acciones button.btn-eliminar:hover {
-  color: darkred;
+  background: #fca5a5;
+  color: white;
 }
 
-/* Modal */
+/* ==================== INPUTS Y BOTÓN ==================== */
+.tarea-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 25px auto;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Inputs */
+.tarea-input input[type="text"],
+.tarea-input input[type="date"],
+.tarea-input input[type="datetime-local"] {
+  flex: 1;
+  width: 100%;
+  max-width: 350px;
+  padding: 12px 15px;
+  border: 1px solid #d8b4fe;
+  border-radius: 12px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #fdf4ff, #f3e8ff);
+  color: #4b0082;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(124, 58, 237, 0.1);
+}
+
+.tarea-input input:focus {
+  border-color: #a78bfa;
+  background: linear-gradient(135deg, #faf5ff, #ede9fe);
+  box-shadow: 0px 6px 15px rgba(167, 139, 250, 0.25);
+}
+
+/* Botón */
+.tarea-input button {
+  flex: 1;
+  width: 100%;
+  max-width: 350px;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 6px 15px rgba(124, 58, 237, 0.25);
+  transition: all 0.3s ease;
+}
+
+.tarea-input button:hover {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 18px rgba(124, 58, 237, 0.35);
+}
+
+.tarea-input button:active {
+  transform: translateY(0);
+  box-shadow: 0px 4px 10px rgba(124, 58, 237, 0.2);
+}
+
+/* Inputs + botón en fila en pantallas grandes */
+@media (min-width: 768px) {
+  .tarea-input {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .tarea-input input,
+  .tarea-input button {
+    max-width: none;
+  }
+}
+
+/* ==================== MODAL ==================== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(4px);
 }
 
 .modal-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
-  max-width: 400px;
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+  max-width: 420px;
+  width: 90%;
   text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -121,12 +238,18 @@ h1 {
 
 .modal-card input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
   margin-bottom: 16px;
   font-size: 16px;
   outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.modal-card input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 6px rgba(124, 58, 237, 0.3);
 }
 
 .modal-actions {
@@ -136,35 +259,42 @@ h1 {
 }
 
 .modal-actions button:first-child {
-  background: #6a5acd;
-  color: rgb(184, 48, 238);
-  padding: 8px 14px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .modal-actions button:first-child:hover {
-  background: #5846c5;
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
 }
 
 .modal-actions button:last-child {
-  background: #f590f02a;
-  padding: 8px 14px;
-  border-radius: 8px;
+  background: #f3e8ff;
+  padding: 10px 16px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .modal-actions button:last-child:hover {
-  background: #d8d8d8;
-  
+  background: #e9d5ff;
 }
-#footer{
-background-color: #a78bfa;
-border-radius: 1%;
-width: 100%;
-height: 50%;
-color: #f3e8ff;
+
+/* ==================== FOOTER ==================== */
+#footer {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+  color: #f3e8ff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-top: 4px solid #e9d5ff;
+  box-shadow: 0 -4px 10px rgba(124, 58, 237, 0.2);
 }
-h2{
-  color: #a78bfa;
-}
+
+

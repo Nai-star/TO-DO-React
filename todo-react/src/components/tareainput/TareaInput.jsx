@@ -1,10 +1,13 @@
-// src/components/tareainput/TareaInput.jsx
 import { useState } from "react";
 import { postTareas } from "../../services/servicios";
 import "./tareaInput.css";
 
 function TareaInput({ tareas, setTareas, mostrarError }) {
   const [tareaInput, setTareaInput] = useState("");
+  const [fecha, setFecha] = useState("");
+
+  // Obtener la fecha de hoy en formato YYYY-MM-DD
+  const hoy = new Date().toISOString().split("T")[0];
 
   const agregarTarea = async () => {
     if (tareaInput.trim() === "") {
@@ -12,7 +15,12 @@ function TareaInput({ tareas, setTareas, mostrarError }) {
       return;
     }
 
-    // Obtener usuario logueado
+    // Validar que la fecha sea exactamente hoy
+    if (fecha.split("T")[0] !== hoy) {
+      mostrarError("La fecha debe ser la de hoy");
+      return;
+    }
+
     const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
     if (!usuarioLogueado) {
       mostrarError("No se encontró el usuario logueado");
@@ -22,13 +30,15 @@ function TareaInput({ tareas, setTareas, mostrarError }) {
     const nuevaTarea = {
       texto: tareaInput.trim(),
       completada: false,
-      usuarioId: usuarioLogueado.id, // Asociamos la tarea al usuario
+      fecha: fecha || null,
+      usuarioId: usuarioLogueado.id,
     };
 
     try {
       const tareaCreada = await postTareas(nuevaTarea);
-      setTareas([...tareas, tareaCreada]); // Agregamos la tarea al estado
-      setTareaInput(""); // Limpiamos input
+      setTareas([...tareas, tareaCreada]);
+      setTareaInput("");
+      setFecha("");
     } catch (error) {
       console.error("Error al agregar la tarea", error);
       mostrarError("Error al agregar la tarea");
@@ -49,11 +59,21 @@ function TareaInput({ tareas, setTareas, mostrarError }) {
         onKeyDown={manejarEnter}
       />
       <button onClick={agregarTarea}>Agregar</button>
+
+      {/* Input con restricción solo a HOY */}
+      <input
+        type="date"
+        value={fecha.split("T")[0]}
+        min={hoy}
+        max={hoy}
+        onChange={(e) => setFecha(e.target.value)}
+      />
     </div>
   );
 }
 
 export default TareaInput;
+
 
 
 

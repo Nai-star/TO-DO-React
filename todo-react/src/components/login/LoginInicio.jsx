@@ -60,11 +60,9 @@ export default function AuthPage() {
       localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
       mostrarMensaje(setMensajeLogin, "✅ Bienvenido " + usuario.nombre);
 
-      // Redirigir siempre a /lista
       setTimeout(() => {
         window.location.href = "/lista";
       }, 1000);
-
     } else {
       mostrarMensaje(setMensajeLogin, "❌ Usuario o contraseña incorrectos");
     }
@@ -94,7 +92,6 @@ export default function AuthPage() {
       setUsuarios([...usuarios, nuevoUsuario]);
       mostrarMensaje(setMensajeRegistro, "✅ Registro exitoso");
 
-      // Limpiar campos
       setNombre("");
       setCorreo("");
       setContraseña("");
@@ -135,53 +132,161 @@ export default function AuthPage() {
 
   // -------- Render --------
   return (
-    <div className="auth-page">
-      {/* -------- LOGIN / REGISTRO -------- */}
-      {isLogin ? (
-        <div className="login-form">
-          <h2>Iniciar Sesión</h2>
-          <input placeholder="Nombre" value={nombreI} onChange={e => setNombreI(e.target.value)} />
-          <input type="password" placeholder="Contraseña" value={contraseñaI} onChange={e => setContraseñaI(e.target.value)} />
-          <button onClick={handleLogin}>Iniciar Sesión</button>
-          <p>{mensajeLogin}</p>
-          <p style={{ cursor: "pointer" }} onClick={() => setIsLogin(false)}>¿No tienes cuenta? Regístrate</p>
-          <p style={{ cursor: "pointer", color: "blue" }} onClick={() => setShowFindUser(true)}>Olvidé mi contraseña</p>
+    <main className="login-page">
+      {/* Lado izquierdo */}
+      <section className="left">
+        <header className="brand">
+          <div className="logo"></div>
+          <div className="brand-name">TO-DoNaiReact</div>
+        </header>
+
+        <div className="form-wrap">
+          {isLogin ? (
+            <div className="login-form">
+              <h1>Bienvenido</h1>
+              <p className="sub">Ingrese sus datos</p>
+              <label>
+                <span className="label-text">Usuario:</span>
+                <input
+                  value={nombreI}
+                  onChange={(e) => setNombreI(e.target.value)}
+                  placeholder="Tu nombre de Usuario"
+                />
+              </label>
+              <label>
+                <span className="label-text">Contraseña:</span>
+                <input
+                  type="password"
+                  value={contraseñaI}
+                  onChange={(e) => setContraseñaI(e.target.value)}
+                  placeholder="Introduce una contraseña"
+                />
+              </label>
+              <div className="row between small">
+                <label className="remember">
+                  <input type="checkbox" /> <span>Recordar 30 días</span>
+                </label>
+                <span
+                  className="forgot"
+                  onClick={() => setShowFindUser(true)}
+                >
+                  Olvidé mi contraseña
+                </span>
+              </div>
+              <button className="btn primary" onClick={handleLogin}>
+                Iniciar Sesión
+              </button>
+              <p>{mensajeLogin}</p>
+              <button
+                className="btn google"
+                onClick={() => alert("Google login aún no implementado")}
+              >
+                <span>G</span> Iniciar con Google
+              </button>
+              <p className="small muted">
+                ¿No tienes cuenta?{" "}
+                <span
+                  className="link"
+                  onClick={() => setIsLogin(false)}
+                >
+                  Regístrate
+                </span>
+              </p>
+            </div>
+          ) : (
+            <div className="registro-form">
+              <h1>Registro</h1>
+              <p className="sub">Crea tu cuenta</p>
+              <label>
+                <span className="label-text">Nombre</span>
+                <input
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  placeholder="Introduce tu Usuario "
+                />
+              </label>
+              <label>
+                <span className="label-text">Correo</span>
+                <input
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  placeholder="ejemplo@email.com"
+                />
+              </label>
+              <label>
+                <span className="label-text">Contraseña</span>
+                <input
+                  type="password"
+                  value={contraseña}
+                  onChange={(e) => setContraseña(e.target.value)}
+                  placeholder="Introduce tu Contraseña"
+                />
+              </label>
+              <button className="btn primary" onClick={handleRegistro}>
+                Registrar
+              </button>
+              <p>{mensajeRegistro}</p>
+              <p className="small muted">
+                ¿Ya tienes cuenta?{" "}
+                <span
+                  className="link"
+                  onClick={() => setIsLogin(true)}
+                >
+                  Inicia sesión
+                </span>
+              </p>
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="registro-form">
-          <h2>Registro</h2>
-          <input placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-          <input placeholder="Correo" value={correo} onChange={e => setCorreo(e.target.value)} />
-          <input type="password" placeholder="Contraseña" value={contraseña} onChange={e => setContraseña(e.target.value)} />
-          <button onClick={handleRegistro}>Registrar</button>
-          <p>{mensajeRegistro}</p>
-          <p style={{ cursor: "pointer" }} onClick={() => setIsLogin(true)}>¿Ya tienes cuenta? Inicia sesión</p>
-        </div>
-      )}
+      </section>
+
+      {/* Lado derecho */}
+      <aside className="right">
+        <div className="illustration" aria-hidden="true"></div>
+      </aside>
 
       {/* -------- MODAL RECUPERACIÓN -------- */}
       {showFindUser && (
         <div className="modal">
-          <h2>Buscar usuario</h2>
-          <input placeholder="Nombre o correo" value={inputUser} onChange={e => setInputUser(e.target.value)} />
-          <button onClick={handleFindUser}>Buscar</button>
-          <button onClick={() => setShowFindUser(false)}>Cerrar</button>
-          <p>{message}</p>
+          <div className="modal-content">
+            <h2>Buscar usuario</h2>
+            <input
+              placeholder="Nombre o correo"
+              value={inputUser}
+              onChange={(e) => setInputUser(e.target.value)}
+            />
+            <button onClick={handleFindUser}>Buscar</button>
+            <button onClick={() => setShowFindUser(false)}>Cerrar</button>
+            <p>{message}</p>
+          </div>
         </div>
       )}
 
       {showChangePassword && (
         <div className="modal">
-          <h2>Cambiar contraseña</h2>
-          <input type="password" placeholder="Nueva contraseña" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-          <input type="password" placeholder="Confirmar contraseña" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-          <button onClick={handleChangePassword}>Guardar</button>
-          <button onClick={() => setShowChangePassword(false)}>Cerrar</button>
-          <p>{changePasswordMessage}</p>
+          <div className="modal-content">
+            <h2>Cambiar contraseña</h2>
+            <input
+              type="password"
+              placeholder="Nueva contraseña"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Confirmar contraseña"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button onClick={handleChangePassword}>Guardar</button>
+            <button onClick={() => setShowChangePassword(false)}>Cerrar</button>
+            <p>{changePasswordMessage}</p>
+          </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }
+
 
 

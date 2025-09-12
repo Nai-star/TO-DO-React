@@ -1,51 +1,19 @@
 {
   "usuarios": [
     {
-      "id": "1",
-      "nombre": "Juan",
-      "correo": "juan@mail.com",
-      "rol": "Estudiante",
-      "contraseña": "123"
-    },
-    {
-      "id": 1757621752323,
+      "id": 1757710070277,
       "nombre": "nai",
       "correo": "rios@gmail.com",
       "contraseña": "1234"
-    },
-    {
-      "id": 1757624526374,
-      "nombre": "bryan",
-      "correo": "brayna@gmail.com",
-      "contraseña": "0987"
     }
   ],
   "tareas": [
     {
-      "id": "dee4",
-      "texto": "Comer",
-      "completada": false
-    },
-    {
-      "id": "09cb",
-      "texto": "Lavar",
-      "completada": false
-    },
-    {
-      "id": "acf2",
-      "texto": "Bañarse",
-      "completada": true
-    },
-    {
-      "id": "422e",
-      "texto": "hacer la tarea",
-      "completada": false
-    },
-    {
-      "id": "5bc3",
-      "texto": "comprar",
-      "completada": false,
-      "usuarioId": 1757621752323
+      "id": "2be4",
+      "texto": "hola",
+      "completada": true,
+      "fecha": "2025-09-12",
+      "usuarioId": 1757710070277
     }
   ]
 }
