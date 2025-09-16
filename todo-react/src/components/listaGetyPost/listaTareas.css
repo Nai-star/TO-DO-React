@@ -48,7 +48,7 @@ h2 {
   margin: 0 auto 30px;
   color: #ffffff;
   font-weight: 700;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-size: 10px;
   text-align: center;
   padding: 16px;
   background: linear-gradient(135deg, #c4b5fd, #a78bfa);

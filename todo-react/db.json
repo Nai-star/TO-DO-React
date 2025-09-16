@@ -1,10 +1,16 @@
 {
   "usuarios": [
     {
-      "id": 1757710070277,
+      "id": "1757710070277",
       "nombre": "nai",
       "correo": "rios@gmail.com",
       "contraseña": "1234"
+    },
+    {
+      "id": 1758034662356,
+      "nombre": "br",
+      "correo": "sosqsss@gmail.om",
+      "contraseña": "123"
     }
   ],
   "tareas": [
@@ -14,6 +20,13 @@
       "completada": true,
       "fecha": "2025-09-12",
       "usuarioId": 1757710070277
+    },
+    {
+      "id": "52c9",
+      "texto": "lavar",
+      "completada": true,
+      "fecha": "2025-09-16",
+      "usuarioId": 1758034662356
     }
   ]
 }

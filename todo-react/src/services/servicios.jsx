@@ -100,3 +100,14 @@ export async function patchTareas(id, tareaEditada) {
       throw error;
    }
 }
+export const getGoogleUser = async (accessToken) => {
+  try {
+    const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return await res.json();
+  } catch (error) {
+    console.error("Error al obtener usuario de Google:", error);
+    return null;
+  }
+};

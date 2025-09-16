@@ -28,12 +28,7 @@ function ModalEditar({ isOpen, textoEditado, setTextoEditado, onGuardar, onCerra
     <div className="modal-overlay" onClick={onCerrar}>
       <div className="modal-card" onClick={stop}>
         <h2>Editar Tarea</h2>
-        <input
-          type="text"
-          value={textoEditado}
-          onChange={(e) => setTextoEditado(e.target.value)}
-          placeholder="Escribe la nueva tarea"
-        />
+        <input type="text" value={textoEditado} onChange={(e) => setTextoEditado(e.target.value)}  placeholder="Escribe la nueva tarea"/>
         <div className="modal-actions">
           <button onClick={onGuardar}>Guardar</button>
           <button onClick={onCerrar}>Cancelar</button>

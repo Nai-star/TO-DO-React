@@ -3,13 +3,8 @@ import { postUsuarios, getUsuarios, findUser, updatePassword } from "../../servi
 import "./login.css";
 
 export default function AuthPage() {
-  // -------- Estados --------
   const [usuarios, setUsuarios] = useState([]);
-
-  // Alternar entre login/registro
   const [isLogin, setIsLogin] = useState(true);
-
-  // Login
   const [nombreI, setNombreI] = useState("");
   const [contraseñaI, setContraseñaI] = useState("");
   const [mensajeLogin, setMensajeLogin] = useState("");
@@ -45,7 +40,7 @@ export default function AuthPage() {
     setTimeout(() => setMensaje(""), 4000);
   };
 
-  // Login
+  // Login manual
   const handleLogin = () => {
     if (!nombreI || !contraseñaI) {
       mostrarMensaje(setMensajeLogin, "⚠️ Complete todos los campos");
@@ -59,7 +54,6 @@ export default function AuthPage() {
     if (usuario) {
       localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
       mostrarMensaje(setMensajeLogin, "✅ Bienvenido " + usuario.nombre);
-
       setTimeout(() => {
         window.location.href = "/lista";
       }, 1000);
@@ -78,6 +72,7 @@ export default function AuthPage() {
 
       const nombreExiste = usuarios.some((u) => u.nombre === nombre);
       const correoExiste = usuarios.some((u) => u.correo === correo);
+
       if (nombreExiste) {
         mostrarMensaje(setMensajeRegistro, "⚠️ Nombre ya registrado");
         return;
@@ -145,6 +140,7 @@ export default function AuthPage() {
             <div className="login-form">
               <h1>Bienvenido</h1>
               <p className="sub">Ingrese sus datos</p>
+
               <label>
                 <span className="label-text">Usuario:</span>
                 <input
@@ -153,6 +149,7 @@ export default function AuthPage() {
                   placeholder="Tu nombre de Usuario"
                 />
               </label>
+
               <label>
                 <span className="label-text">Contraseña:</span>
                 <input
@@ -162,33 +159,24 @@ export default function AuthPage() {
                   placeholder="Introduce una contraseña"
                 />
               </label>
-              <div className="row between small">
-                <label className="remember">
-                  <input type="checkbox" /> <span>Recordar 30 días</span>
-                </label>
-                <span
-                  className="forgot"
-                  onClick={() => setShowFindUser(true)}
-                >
-                  Olvidé mi contraseña
-                </span>
+
+              <div className="checkbox-group">
+                <input type="checkbox" id="remember" />
+                <label htmlFor="remember">Recordar 30 días</label>
               </div>
+
+              <span className="forgot" onClick={() => setShowFindUser(true)}>
+                Olvidé mi contraseña
+              </span>
+
               <button className="btn primary" onClick={handleLogin}>
                 Iniciar Sesión
               </button>
               <p>{mensajeLogin}</p>
-              <button
-                className="btn google"
-                onClick={() => alert("Google login aún no implementado")}
-              >
-                <span>G</span> Iniciar con Google
-              </button>
+
               <p className="small muted">
                 ¿No tienes cuenta?{" "}
-                <span
-                  className="link"
-                  onClick={() => setIsLogin(false)}
-                >
+                <span className="link" onClick={() => setIsLogin(false)}>
                   Regístrate
                 </span>
               </p>
@@ -197,6 +185,7 @@ export default function AuthPage() {
             <div className="registro-form">
               <h1>Registro</h1>
               <p className="sub">Crea tu cuenta</p>
+
               <label>
                 <span className="label-text">Nombre</span>
                 <input
@@ -205,6 +194,7 @@ export default function AuthPage() {
                   placeholder="Introduce tu Usuario "
                 />
               </label>
+
               <label>
                 <span className="label-text">Correo</span>
                 <input
@@ -213,6 +203,7 @@ export default function AuthPage() {
                   placeholder="ejemplo@email.com"
                 />
               </label>
+
               <label>
                 <span className="label-text">Contraseña</span>
                 <input
@@ -222,16 +213,15 @@ export default function AuthPage() {
                   placeholder="Introduce tu Contraseña"
                 />
               </label>
+
               <button className="btn primary" onClick={handleRegistro}>
                 Registrar
               </button>
               <p>{mensajeRegistro}</p>
+
               <p className="small muted">
                 ¿Ya tienes cuenta?{" "}
-                <span
-                  className="link"
-                  onClick={() => setIsLogin(true)}
-                >
+                <span className="link" onClick={() => setIsLogin(true)}>
                   Inicia sesión
                 </span>
               </p>
@@ -245,7 +235,7 @@ export default function AuthPage() {
         <div className="illustration" aria-hidden="true"></div>
       </aside>
 
-      {/* -------- MODAL RECUPERACIÓN -------- */}
+      {/* Modal recuperación */}
       {showFindUser && (
         <div className="modal">
           <div className="modal-content">
@@ -287,6 +277,9 @@ export default function AuthPage() {
     </main>
   );
 }
+
+
+
 
 
 

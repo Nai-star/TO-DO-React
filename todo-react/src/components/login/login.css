@@ -14,10 +14,9 @@
 }
 
 /* ======================= */
-/* Layout general */
+/* Página login */
 .login-page {
   display: flex;
-  flex-direction: center;
   min-height: 100vh;
   width: 100%;
   font-family: 'Poppins', sans-serif;
@@ -30,8 +29,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* centrado vertical */
+  align-items: center;     /* centrado horizontal */
   padding: 3rem;
   z-index: 10;
   background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-pink));
@@ -120,16 +119,6 @@ input:focus {
   background: linear-gradient(135deg, var(--btn-primary-hover), var(--btn-primary));
 }
 
-.btn.google {
-  background: white;
-  border: 1px solid #ddd;
-  color: var(--text-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
 /* Links */
 .link {
   color: var(--btn-primary);
@@ -146,6 +135,27 @@ input:focus {
   color: var(--text-muted);
 }
 
+/* Checkbox alineado */
+.checkbox-group {
+  display: flex;
+  align-items: center; /* centra checkbox y texto verticalmente */
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+/* Row para "olvidé mi contraseña" */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 /* ======================= */
 /* Lado derecho: nube pantalla completa */
 .right {
@@ -160,24 +170,22 @@ input:focus {
     100% 85%,
     85% 100%,
     0 100%
-  ); /* forma de nube curva */
+  );
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Imagen detrás de la nube */
 .right img.illustration {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* cubre todo sin recortarse */
+  object-fit: cover;
   z-index: 0;
 }
 
-/* Nube decorativa encima */
 .right::before {
   content: '';
   position: absolute;
@@ -208,7 +216,6 @@ input:focus {
   animation: float2 10s ease-in-out infinite alternate;
 }
 
-/* Animaciones nube */
 @keyframes float1 {
   0% { transform: rotate(-25deg) translateY(0px) translateX(0px);}
   50% { transform: rotate(-25deg) translateY(20px) translateX(10px);}
@@ -258,7 +265,7 @@ input:focus {
 
   .right::before,
   .right::after {
-    display: none; /* ocultamos nubes en móvil */
+    display: none;
   }
 
   .right img.illustration {
@@ -274,3 +281,7 @@ input:focus {
     max-width: 90%;
   }
 }
+
+
+
+
